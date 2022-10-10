@@ -90,9 +90,7 @@ df_merged <- df_merged %>% rowwise() %>% mutate(immigration_rate = total_imm/ po
 #apply(df_merged, 2, function(x) sum(is.na(x)))
 
 # Adding 2021 immigration rate
-imi_rate <- read_excel("immigration_rate_2021.xlsx")
-  
-df_merged = left_join(df_merged, imi_rate)
+df_merged = left_join(df_merged, test)
 
 # save the prepared data
 saveRDS(df_merged, "df_merged.rds")
