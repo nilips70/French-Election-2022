@@ -36,8 +36,7 @@ df_final <- df_merged %>%
   pivot_longer(
     names_to = "candidate", values_to = "vote",
     -c(code, white_collar_rate:life_expectancy,im_rate)
-  ) #%>% 
-  #filter(candidate %in% c('LE PEN','MACRON', 'MÉLENCHON'))
+  )
 
 # preparing a dictionary for recognizing the candidates
 cand_code <- unique(df_final$candidate)
@@ -57,20 +56,6 @@ df_final <- df_final %>%
     sp_effect2 = ifelse(id == 5, code, sp_effect2),
     sp_effect3 = ifelse(id == 7, code, sp_effect3))
 
-# Checking correlations
-# df_final1 <- df_final %>% 
-#   mutate(white_collar_rate = as.numeric(white_collar_rate),
-#          unemployment_rate = as.numeric(unemployment_rate),
-#          poverty_rate = as.numeric(poverty_rate),
-#          life_expectancy = as.numeric(life_expectancy),
-#          higher_education_rate = as.numeric(higher_education_rate),
-#          im_rate = as.numeric(im_rate)
-#          )
-# 
-# corrr <- df_final1 %>%
-#   select(white_collar_rate, unemployment_rate, poverty_rate, life_expectancy, higher_education_rate, im_rate) 
-# 
-# corrplot(cor(corrr), order = "hclust", type = "upper")
 
 # creating id for random effects(bcz inla works this way)
 df_final <- df_final %>% mutate(
@@ -82,25 +67,6 @@ df_final <- df_final %>% mutate(
   id_im = id
 )
 
-
-# har kudum az in f ha ye random effecte age dakhele f chizi nanvisi fek mikone iid hast
-# fixed=t yani estimate nashe un hyperparameter, constr=t yani sum coef ha 0 she (sum to zero constraint for this model)
-# formula.spatial = vote ~ -1 +
-#  f(code, initial = -10, fixed = T) +
-#  f(id_im, percent_imm_dep, fixed = T, constr = T) +
-#  f(id_po, poverty_rate, fixed = T, constr = T) +
-#  f(id_ex, avg_life, fixed = T, constr = T) +
-#  f(id_ed, people_education, fixed = T, constr = T)  +
-#  f(id_wa, SNHM14, fixed = T, constr = T) +
-#  f(id_un, unemployment_rate, fixed = T, constr = T) +
-#  f(id_el, elderly_rate, fixed = T, constr = T) +
-#  f(id_wh, whitecol_rate, fixed = T, constr = T) +
-#  f(id_ag, agri_rate, fixed = T, constr = T) +
-#  f(sp_effect, model = 'besag', graph = g) + #spatial random effect
-#  f(sp_effect2, model = 'besag', graph = g) #+
-# f(sp_effect3, model = 'besag', graph = g) #+
-# f(sp_effect4, model = 'besag', graph = g)
-# f(id_ed, people_education, fixed = T, constr = T)
 
 
 formula.spatial <- vote ~ -1 +
@@ -129,15 +95,8 @@ model <- inla(formula.spatial,
 df_accuracy <- df_final %>%
   mutate(lambda = model$summary.fitted.values[1:nrow(.), "mode"],
          lambda_low = model$summary.fitted.values[1:nrow(.), "0.025quant"],
-         lambda_high = model$summary.fitted.values[1:nrow(.), "0.975quant"]) #%>%
-  # group_by(code) %>%
-  # mutate(
-  #   total_votes = sum(vote),
-  #   total_lambda = sum(lambda),
-  #   real_probs = vote / total_votes,
-  #   pred_probs = lambda / total_lambda
-  # ) %>%
-  # ungroup()
+         lambda_high = model$summary.fitted.values[1:nrow(.), "0.975quant"]) 
+ 
 
 plt_theme = theme(
   axis.text.x = element_text(size = 15, angle = 0, margin = margin(t = 6)),
@@ -154,42 +113,9 @@ plt_theme = theme(
 up_lim = max(df_accuracy[,c("vote", "lambda")], na.rm = T) 
 low_lim = min(df_accuracy[,c("vote", "lambda")], na.rm = T) 
 
-# df_accuracy %>% 
-#   #mutate(across(c(vote,lambda, lambda_low, lambda_high), function(x) log(x))) %>% 
-#   ggplot(aes(vote, lambda)) +
-#   #geom_point() +
-#   geom_linerange(aes(ymin=lambda_low, ymax=lambda_high),color = '#112f5f') + 
-#   geom_abline(slope=1, color = "darkblue") +
-#   #coord_cartesian(ylim = c(low_lim,up_lim), xlim = c(low_lim,up_lim)) + 
-#   labs(x = 'Observed', y = 'Fitted') + 
-#   theme_bw() +
-#   plt_theme
 
 summary(df_accuracy$real_probs - df_accuracy$pred_probs)
 
-
-
-# 
-# test = data.frame(x = x , x_low = x_low, x_high = x_high, y = y)
-# test %>% 
-#   ggplot(aes(y, x)) +
-#   geom_point() +
-#   geom_linerange(aes(ymin=x_low, ymax=x_high),color = '#112f5f') + 
-#   geom_abline(slope=1, color = "darkblue") +
-#   theme_bw() +
-#   plt_theme
-
-
-# df_accuracy %>% 
-#   mutate(across(c(vote,lambda, lambda_low, lambda_high), function(x) log(x))) %>% 
-#   mutate(diff = lambda_high - lambda_low) %>% 
-#   pull(diff) %>% 
-#   summary()
-
-# 
-# test = df_accuracy %>%
-#   #as_tibble() %>%
-#   mutate(across(c(vote,lambda, lambda_low, lambda_high), function(x) log(x)))
 
 # Confusion matrix on training data
 df_conf_train <- df_accuracy %>%
