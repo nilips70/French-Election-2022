@@ -10,3 +10,17 @@ This repository is organized into two main folders:
 
    - `french_election_modeling.R`: This R script is where the final dataset is used for modelling. It contains the code for running statistical analyses, generating visualizations, and obtaining the results presented in the paper.
 
+## Getting Started
+
+To replicate the findings presented in the paper or use the data for further analysis, follow these steps:
+
+1. Clone this repository to your local machine using Git:
+
+2. Navigate to the `Data` folder to access the raw datasets.
+
+3. Open the `Codes` folder to find the R scripts:
+   - Start with `data_preparation.R` to prepare the data for modelling.
+   - Proceed to `french_election_modeling.R` for statistical modelling and result generation.
+
+
+
