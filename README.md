@@ -6,7 +6,7 @@ This repository is organized into two main folders:
 1. **Data:** This folder contains the raw datasets used in the paper. These datasets are the foundation for your analysis and can be accessed for reference.
 2. **Codes:** This folder contains the code used for data preparation and modelling. It includes the following files:
    
--'data preparation.R': This R script is used to prepare the raw datasets for modelling. It performs data cleaning, transformation, and aggregation as necessary to create the final dataset for analysis.
+-**'data preparation.R':** This R script is used to prepare the raw datasets for modelling. It performs data cleaning, transformation, and aggregation as necessary to create the final dataset for analysis.
 
--'french_election_modeling.R': This R script is where the final dataset is used for modelling. It contains the code for running statistical analyses, generating visualizations, and obtaining the results presented in the paper.
+-**'french_election_modeling.R':** This R script is where the final dataset is used for modelling. It contains the code for running statistical analyses, generating visualizations, and obtaining the results presented in the paper.
 
