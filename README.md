@@ -23,4 +23,5 @@ To replicate the findings presented in the paper or use the data for further ana
    - Proceed to `french_election_modeling.R` for statistical modelling and result generation.
 
 
-
+## Slides
+**Presentation Slides**: The slides presented at the GISRUK2023 conference for this paper are available in this repository. You can access them in the file named `GISRUK2023-Pourshir-Sefidi-Mooney.pdf`.
