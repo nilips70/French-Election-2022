@@ -1,5 +1,5 @@
 # Exploring the Effects of Socioeconomic Factors on Voter Preferences: A Case-Study of France 2022
-This repository contains the resources and code associated with the paper titled **"Exploring the Effects of Socioeconomic Factors on Voter Preferences: A Case-Study of France 2022"** authored by Niloufar Pourshir Sefidi, Amin Shoari Nejad, and Peter Mooney. The paper was presented at [GISRUK2023](https://gisruk.org/gisruk-2023/) and can be accessed through the following link: [Paper](https://mural.maynoothuniversity.ie/17135/)
+This repository contains the resources and code associated with the paper titled **"Exploring the Effects of Socioeconomic Factors on Voter Preferences: A Case-Study of France 2022"** authored by Niloufar Pourshir Sefidi, Amin Shoari Nejad, and Peter Mooney. The paper was presented at [GISRUK2023](https://gisruk.org/gisruk-2023/) and can be accessed through the following link: [Paper](https://mural.maynoothuniversity.ie/17135/). Additionally, a ShinyApp for exploring election data, the socioeconomic situation in each department, and the association between these variables and a candidate's vote has been developed and can be accessed at: [ShinyApp](https://nilips.shinyapps.io/app2/)
 
 ## Repository Structure
 This repository is organized into two main folders:
