@@ -9,8 +9,8 @@ This repository is organized into two main folders:
    - `data_preparation.R`: This R script is used to prepare the raw datasets for modelling. It performs data cleaning, transformation, and aggregation as necessary to create the final dataset for analysis.
 
    - `french_election_modeling.R`: This R script is where the final dataset is used for modelling. It contains the code for running statistical analyses, generating visualizations, and obtaining the results presented in the paper.
-3. **ShinyApp:** The 'app2.R' file is an R script that creates a Shiny app for visualizing the variables used in the paper, as well as the winner and each candidate's vote share across the French departments. It also shows the association between each candidate's votes and the mentioned variables.
-4. 
+3. **ShinyApp:** The `app2.R` file is an R script that creates a Shiny app for visualizing the variables used in the paper, as well as the winner and each candidate's vote share across the French departments. It also shows the association between each candidate's votes and the mentioned variables.
+   
 ## Getting Started
 
 To replicate the findings presented in the paper or use the data for further analysis, follow these steps:
