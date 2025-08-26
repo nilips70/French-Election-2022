@@ -5,7 +5,6 @@ library(purrr)
 library(sf)
 library(readxl)
 library(spdep)  #adjacency matrix
-rm(list = ls())
 
 
 # ========================================================================================================
